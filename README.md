@@ -2,7 +2,7 @@
 
 This is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: `10`
+Time spent: `12`
 
 ### Features
 
@@ -16,11 +16,13 @@ Time spent: `10`
 - [x] User can compose a new tweet by tapping on a compose button.
 - [x] User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
   - **Note**: Implemented this by adding controls to the table view cell.  The first control (reply) has a fixed height constraint.  The others have an equal height constraint to the first.  Using an `IBOutlet` for the fixed height constraint, it could be set to zero initially.  On selection, the constraint could be updated and the changed table cells (newly selected and previously selected) are reloaded.
-- [ ] User can retweet, favorite, and reply to the tweet directly from the timeline feed.
+- [x] User can retweet, favorite, and reply to the tweet directly from the timeline feed.
+  - **Note**: Retweeting works, but I didn't implement changing the retweet image (e.g., to green).  This is because I'd then need to implement looking up every tweet on load to see if it was retweeted, so the retweet icon would look correct on a cold start.  I didn't have time to go this far.
 
 #### Problems
 
 - The tweet text in the table cell doesn't wrap until the cell is scrolled away and then back, or the device orientation changes.  I set `preferredMaxLayoutWidth` in `awakeFromNib` and `layoutSubviews`.  I tried playing with various constraints and priorities, but never did get it working correctly.
+- I didn't think ahead and made my reply, retweet, favorite controls images.  I should have made them buttons.  After adding all the constraints, I didn't want to start over, so I added a tap gesture recognizer to each.  I couldn't get this working in IB.  I found others had [the issue](http://stackoverflow.com/questions/19124922/uicollectionview-adding-single-tap-gesture-recognizer-to-supplementary-view) too.  I ended up adding the gesture recognizers in code.
 
 #### Optional
 
