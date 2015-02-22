@@ -116,7 +116,9 @@
 }
 
 - (void)tweetCellFavoriteTapped:(TweetCell *)cell {
-    
+    [[TwitterClient sharedInstance] favorite:cell.tweet completion:^(NSError *error) {
+        NSLog(@"Favorite!");
+    }];
 }
 
 /*

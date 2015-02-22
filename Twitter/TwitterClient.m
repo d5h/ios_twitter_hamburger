@@ -82,6 +82,17 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
     }];
 }
 
+- (void)favorite:(Tweet *)tweet completion:(void (^)(NSError *error))completion {
+    NSDictionary *params = [NSDictionary dictionaryWithObject:tweet.ident forKey:@"id"];
+    [self POST:@"1.1/favorites/create.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        completion(nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(error);
+    }];
+}
+
 - (void)openURL:(NSURL *)url {
     [self fetchAccessTokenWithPath:@"oauth/access_token" method:@"POST" requestToken:[[BDBOAuth1Credential alloc] initWithQueryString:url.query] success:^(BDBOAuth1Credential *accessToken) {
         
