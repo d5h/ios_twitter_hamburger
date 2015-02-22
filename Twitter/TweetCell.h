@@ -9,6 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "Tweet.h"
 
+@class TweetCell;
+
+@protocol TweetCellDelegate <NSObject>
+
+- (void)tweetCellReplyTapped:(TweetCell *)cell;
+- (void)tweetCellRetweetTapped:(TweetCell *)cell;
+- (void)tweetCellFavoriteTapped:(TweetCell *)cell;
+
+@end
+
 @interface TweetCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
@@ -16,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeSinceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tweetTextLabel;
+@property (nonatomic, weak) id<TweetCellDelegate> delegate;
 
 - (void)setTweet:(Tweet *)tweet;
 - (void)setShowControls:(BOOL)showControls;

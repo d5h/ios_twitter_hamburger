@@ -13,7 +13,7 @@
 #import "Tweet.h"
 #import "ComposeViewController.h"
 
-@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, TweetCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *tweets;
@@ -71,7 +71,7 @@
 
     [tableView beginUpdates];
     NSMutableArray *indexPaths = [NSMutableArray arrayWithObject:indexPath];
-    if (self.selectedRow != -1) {
+    if (self.selectedRow != -1 && self.selectedRow != indexPath.row) {
         NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:self.selectedRow inSection:0];
         [indexPaths addObject:selectedIndexPath];
     }
@@ -88,6 +88,7 @@
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
 
     Tweet *tweet = self.tweets[indexPath.row];
+    cell.delegate = self;
     [cell setTweet:tweet];
     BOOL showControls = (self.selectedRow == indexPath.row);
     [cell setShowControls:showControls];
@@ -98,6 +99,22 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Tweet cell delegate methods
+
+- (void)tweetCellReplyTapped:(TweetCell *)cell {
+    NSString *text = [NSString stringWithFormat:@"%@ ", cell.screenNameLabel.text];
+    ComposeViewController *vc = [[ComposeViewController alloc] initWithTweetText:text];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)tweetCellRetweetTapped:(TweetCell *)cell {
+    
+}
+
+- (void)tweetCellFavoriteTapped:(TweetCell *)cell {
+    
 }
 
 /*

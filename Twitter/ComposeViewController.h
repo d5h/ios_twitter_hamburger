@@ -10,4 +10,6 @@
 
 @interface ComposeViewController : UIViewController
 
+- (id)initWithTweetText:(NSString *)text;
+
 @end

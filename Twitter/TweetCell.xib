@@ -91,8 +91,11 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="controlsHeightConstraint" destination="9Li-1w-Tz5" id="6fI-Yd-BtB"/>
+                <outlet property="favoriteImage" destination="uL2-zC-AFQ" id="TUo-uf-hTf"/>
                 <outlet property="nameLabel" destination="Xyc-U9-o6J" id="KoF-VI-Ek8"/>
                 <outlet property="profileImage" destination="TMm-wh-9oG" id="97Q-LR-Pix"/>
+                <outlet property="replyImage" destination="pVk-mH-0GD" id="UFx-bX-04Y"/>
+                <outlet property="retweetImage" destination="Dqw-iA-ieD" id="soy-c9-SA0"/>
                 <outlet property="screenNameLabel" destination="bAf-ua-rRW" id="mCe-GF-gYS"/>
                 <outlet property="timeSinceLabel" destination="vbB-86-r63" id="RRv-ma-k9T"/>
                 <outlet property="tweetTextLabel" destination="c2N-gY-JGb" id="NpH-iJ-qlT"/>

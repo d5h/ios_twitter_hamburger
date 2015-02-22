@@ -12,6 +12,7 @@
 @interface ComposeViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (nonatomic, strong) NSString *tweetText;
 
 @end
 
@@ -19,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.textField.text = self.tweetText;
 }
 
 - (IBAction)onTweet:(id)sender {
@@ -28,6 +29,14 @@
     [[TwitterClient sharedInstance] updateStatus:text completion:^(NSError *error) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
+}
+
+- (id)initWithTweetText:(NSString *)text {
+    self = [super init];
+    if (self) {
+        self.tweetText = text;
+    }
+    return self;
 }
 
 - (void)didReceiveMemoryWarning {

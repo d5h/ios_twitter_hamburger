@@ -8,12 +8,15 @@
 
 #import "UIImageView+AFNetworking.h"
 #import "TweetCell.h"
+#import "ComposeViewController.h"
 
 @interface TweetCell ()
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *controlsHeightConstraint;
 @property (nonatomic, assign) BOOL showControls;
-
+@property (weak, nonatomic) IBOutlet UIImageView *replyImage;
+@property (weak, nonatomic) IBOutlet UIImageView *retweetImage;
+@property (weak, nonatomic) IBOutlet UIImageView *favoriteImage;
 
 @end
 
@@ -25,6 +28,21 @@
     self.profileImage.layer.cornerRadius = 3;
     self.profileImage.clipsToBounds = YES;
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
+    [self addTapRecognizerForImage:self.replyImage action:@selector(onReply)];
+}
+
+- (void)onReply {
+    [self.delegate tweetCellReplyTapped:self];
+}
+
+- (void)addTapRecognizerForImage:(UIImageView *)image action:(SEL)action {
+    image.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:action];
+    [tap setNumberOfTouchesRequired:1];
+    [tap setNumberOfTapsRequired:1];
+    [tap setDelegate:self];
+    [image addGestureRecognizer:tap];
 }
 
 - (void)layoutSubviews {
@@ -68,3 +86,4 @@
 }
 
 @end
+
