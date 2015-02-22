@@ -71,6 +71,17 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
     }];
 }
 
+- (void)retweet:(Tweet *)tweet completion:(void (^)(NSError *error))completion {
+    NSString *url = [NSString stringWithFormat:@"1.1/statuses/retweet/%@.json", tweet.ident];
+    [self POST:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        completion(nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(error);
+    }];
+}
+
 - (void)openURL:(NSURL *)url {
     [self fetchAccessTokenWithPath:@"oauth/access_token" method:@"POST" requestToken:[[BDBOAuth1Credential alloc] initWithQueryString:url.query] success:^(BDBOAuth1Credential *accessToken) {
         

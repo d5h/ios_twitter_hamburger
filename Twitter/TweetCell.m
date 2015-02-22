@@ -30,10 +30,15 @@
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     [self addTapRecognizerForImage:self.replyImage action:@selector(onReply)];
+    [self addTapRecognizerForImage:self.retweetImage action:@selector(onRetweet)];
 }
 
 - (void)onReply {
     [self.delegate tweetCellReplyTapped:self];
+}
+
+- (void)onRetweet {
+    [self.delegate tweetCellRetweetTapped:self];
 }
 
 - (void)addTapRecognizerForImage:(UIImageView *)image action:(SEL)action {
@@ -51,6 +56,7 @@
 }
 
 - (void)setTweet:(Tweet *)tweet {
+    _tweet = tweet;
     self.nameLabel.text = tweet.user.name;
     self.screenNameLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
     self.tweetTextLabel.text = tweet.text;

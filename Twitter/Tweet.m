@@ -14,6 +14,7 @@
     self = [super init];
     
     if (self) {
+        self.ident = [dictionary[@"id"] stringValue];
         self.text = dictionary[@"text"];
         self.user = [[User alloc] initWithDictionary:dictionary[@"user"]];
         NSString *createdAtString = dictionary[@"created_at"];

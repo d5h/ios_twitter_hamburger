@@ -104,13 +104,15 @@
 #pragma mark - Tweet cell delegate methods
 
 - (void)tweetCellReplyTapped:(TweetCell *)cell {
-    NSString *text = [NSString stringWithFormat:@"%@ ", cell.screenNameLabel.text];
+    NSString *text = [NSString stringWithFormat:@"%@ ", cell.tweet.user.screenName];
     ComposeViewController *vc = [[ComposeViewController alloc] initWithTweetText:text];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)tweetCellRetweetTapped:(TweetCell *)cell {
-    
+    [[TwitterClient sharedInstance] retweet:cell.tweet completion:^(NSError *error) {
+        NSLog(@"Retweet!");
+    }];
 }
 
 - (void)tweetCellFavoriteTapped:(TweetCell *)cell {
