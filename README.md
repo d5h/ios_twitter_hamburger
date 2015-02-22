@@ -15,7 +15,7 @@ Time spent: `10`
 - [x] User can pull to refresh
 - [x] User can compose a new tweet by tapping on a compose button.
 - [x] User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
-  - *Note*: Implemented this by adding controls to the table view cell.  The first control (reply) has a fixed height constraint.  The others have an equal height constraint to the first.  Using an `IBOutlet` for the fixed height constraint, it could be set to zero initially.  On selection, the constraint could be updated and the changed table cells (newly selected and previously selected) are reloaded.
+  - **Note**: Implemented this by adding controls to the table view cell.  The first control (reply) has a fixed height constraint.  The others have an equal height constraint to the first.  Using an `IBOutlet` for the fixed height constraint, it could be set to zero initially.  On selection, the constraint could be updated and the changed table cells (newly selected and previously selected) are reloaded.
 - [ ] User can retweet, favorite, and reply to the tweet directly from the timeline feed.
 
 #### Problems
