@@ -1,18 +1,75 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="TweetCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="64" id="KGk-i7-Jjw" customClass="TweetCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TMm-wh-9oG">
+                        <rect key="frame" x="8" y="8" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="48" id="I5b-0d-dah"/>
+                            <constraint firstAttribute="height" constant="48" id="xMg-cm-yhk"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Picard Tips" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xyc-U9-o6J">
+                        <rect key="frame" x="64" y="8" width="74.5" height="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="4h" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbB-86-r63">
+                        <rect key="frame" x="295" y="8" width="16.5" height="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <color key="textColor" red="0.50196081399917603" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="@PicardTips" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAf-ua-rRW">
+                        <rect key="frame" x="146" y="9" width="70.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                        <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Add an element of mystery" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2N-gY-JGb">
+                        <rect key="frame" x="64" y="26" width="173" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Xyc-U9-o6J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="0HW-Sb-L1g"/>
+                    <constraint firstItem="vbB-86-r63" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bAf-ua-rRW" secondAttribute="trailing" constant="8" id="2Nd-Sb-Si0"/>
+                    <constraint firstItem="Xyc-U9-o6J" firstAttribute="centerY" secondItem="bAf-ua-rRW" secondAttribute="centerY" id="2r9-L4-TM2"/>
+                    <constraint firstItem="TMm-wh-9oG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="4A4-eX-no8"/>
+                    <constraint firstItem="TMm-wh-9oG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="5hS-tA-dhh"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="c2N-gY-JGb" secondAttribute="trailing" constant="8" id="Bkb-Bn-Zdr"/>
+                    <constraint firstItem="vbB-86-r63" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="GCL-LM-67l"/>
+                    <constraint firstItem="bAf-ua-rRW" firstAttribute="leading" secondItem="Xyc-U9-o6J" secondAttribute="trailing" constant="7.5" id="PJd-0R-bc5"/>
+                    <constraint firstAttribute="trailing" secondItem="vbB-86-r63" secondAttribute="trailing" constant="8" id="U4A-mQ-BoO"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="TMm-wh-9oG" secondAttribute="bottom" constant="8" id="gNW-DL-B3Q"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="c2N-gY-JGb" secondAttribute="bottom" constant="8" id="hpx-U5-YxM"/>
+                    <constraint firstItem="c2N-gY-JGb" firstAttribute="leading" secondItem="TMm-wh-9oG" secondAttribute="trailing" constant="8" id="i9p-Pg-XNE"/>
+                    <constraint firstItem="c2N-gY-JGb" firstAttribute="top" secondItem="Xyc-U9-o6J" secondAttribute="bottom" constant="1" id="njC-Qx-cLO"/>
+                    <constraint firstItem="Xyc-U9-o6J" firstAttribute="leading" secondItem="TMm-wh-9oG" secondAttribute="trailing" constant="8" id="yMz-aw-jJM"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="nameLabel" destination="Xyc-U9-o6J" id="KoF-VI-Ek8"/>
+                <outlet property="profileImage" destination="TMm-wh-9oG" id="97Q-LR-Pix"/>
+                <outlet property="screenNameLabel" destination="bAf-ua-rRW" id="mCe-GF-gYS"/>
+                <outlet property="timeSinceLabel" destination="vbB-86-r63" id="RRv-ma-k9T"/>
+                <outlet property="tweetTextLabel" destination="c2N-gY-JGb" id="NpH-iJ-qlT"/>
+            </connections>
+            <point key="canvasLocation" x="563" y="415"/>
         </tableViewCell>
     </objects>
 </document>

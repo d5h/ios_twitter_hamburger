@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Tweet.h"
 
 @interface TweetCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeSinceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *tweetTextLabel;
+
+- (void)setTweet:(Tweet *)tweet;
 
 @end
