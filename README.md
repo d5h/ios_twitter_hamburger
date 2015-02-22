@@ -35,4 +35,4 @@ Time spent: `12`
 
 ### Walkthrough
 
-![Video Walkthrough](...)
+![Video Walkthrough](https://raw.githubusercontent.com/d5h/ios_twitter/master/twitter.gif)
