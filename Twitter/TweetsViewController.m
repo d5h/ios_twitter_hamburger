@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *tweets;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-
+@property (nonatomic, assign) NSInteger selectedRow;
 
 @end
 
@@ -43,6 +43,7 @@
     [self.tableView addSubview:self.refreshControl];
     
     [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
+        self.selectedRow = -1;
         self.tweets = tweets;
         [self.tableView reloadData];
     }];
@@ -50,6 +51,7 @@
 
 - (void)onRefresh {
     [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
+        self.selectedRow = -1;
         self.tweets = tweets;
         [self.refreshControl endRefreshing];
         [self.tableView reloadData];
@@ -65,6 +67,19 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    [tableView beginUpdates];
+    NSMutableArray *indexPaths = [NSMutableArray arrayWithObject:indexPath];
+    if (self.selectedRow != -1) {
+        NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:self.selectedRow inSection:0];
+        [indexPaths addObject:selectedIndexPath];
+    }
+    self.selectedRow = indexPath.row;
+    [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    [tableView endUpdates];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.tweets.count;
 }
@@ -74,6 +89,8 @@
 
     Tweet *tweet = self.tweets[indexPath.row];
     [cell setTweet:tweet];
+    BOOL showControls = (self.selectedRow == indexPath.row);
+    [cell setShowControls:showControls];
     
     return cell;
 }

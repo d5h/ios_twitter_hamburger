@@ -6,8 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="64" id="KGk-i7-Jjw" customClass="TweetCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="134" id="KGk-i7-Jjw" customClass="TweetCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="134"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -44,32 +44,65 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply" translatesAutoresizingMaskIntoConstraints="NO" id="pVk-mH-0GD">
+                        <rect key="frame" x="64" y="51" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="9Li-1w-Tz5"/>
+                            <constraint firstAttribute="width" constant="16" id="tTf-V8-uaa"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favorite" translatesAutoresizingMaskIntoConstraints="NO" id="uL2-zC-AFQ">
+                        <rect key="frame" x="180" y="51" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="ozz-EC-mny"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweet" translatesAutoresizingMaskIntoConstraints="NO" id="Dqw-iA-ieD">
+                        <rect key="frame" x="122" y="51" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="zwZ-UD-zaz"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Xyc-U9-o6J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="0HW-Sb-L1g"/>
+                    <constraint firstItem="Dqw-iA-ieD" firstAttribute="top" secondItem="pVk-mH-0GD" secondAttribute="top" id="0w3-kA-mZK"/>
                     <constraint firstItem="vbB-86-r63" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bAf-ua-rRW" secondAttribute="trailing" constant="8" id="2Nd-Sb-Si0"/>
                     <constraint firstItem="Xyc-U9-o6J" firstAttribute="centerY" secondItem="bAf-ua-rRW" secondAttribute="centerY" id="2r9-L4-TM2"/>
                     <constraint firstItem="TMm-wh-9oG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="4A4-eX-no8"/>
                     <constraint firstItem="TMm-wh-9oG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="5hS-tA-dhh"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="c2N-gY-JGb" secondAttribute="trailing" constant="8" id="Bkb-Bn-Zdr"/>
+                    <constraint firstItem="c2N-gY-JGb" firstAttribute="leading" secondItem="pVk-mH-0GD" secondAttribute="leading" id="DyB-Vw-HL2"/>
                     <constraint firstItem="vbB-86-r63" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="GCL-LM-67l"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pVk-mH-0GD" secondAttribute="bottom" constant="8.5" id="MeL-aF-1nW"/>
                     <constraint firstItem="bAf-ua-rRW" firstAttribute="leading" secondItem="Xyc-U9-o6J" secondAttribute="trailing" constant="7.5" id="PJd-0R-bc5"/>
+                    <constraint firstItem="pVk-mH-0GD" firstAttribute="top" secondItem="c2N-gY-JGb" secondAttribute="bottom" constant="8" id="R27-L2-aO3"/>
+                    <constraint firstItem="uL2-zC-AFQ" firstAttribute="leading" secondItem="Dqw-iA-ieD" secondAttribute="trailing" constant="42" id="Tkg-1O-fOh"/>
                     <constraint firstAttribute="trailing" secondItem="vbB-86-r63" secondAttribute="trailing" constant="8" id="U4A-mQ-BoO"/>
+                    <constraint firstItem="Dqw-iA-ieD" firstAttribute="leading" secondItem="pVk-mH-0GD" secondAttribute="trailing" constant="42" id="Ugz-19-Spu"/>
+                    <constraint firstItem="Dqw-iA-ieD" firstAttribute="height" secondItem="pVk-mH-0GD" secondAttribute="height" id="W9s-qo-meI"/>
+                    <constraint firstItem="Dqw-iA-ieD" firstAttribute="top" secondItem="uL2-zC-AFQ" secondAttribute="top" id="ec5-D1-NbT"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="TMm-wh-9oG" secondAttribute="bottom" constant="8" id="gNW-DL-B3Q"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="c2N-gY-JGb" secondAttribute="bottom" constant="8" id="hpx-U5-YxM"/>
                     <constraint firstItem="c2N-gY-JGb" firstAttribute="leading" secondItem="TMm-wh-9oG" secondAttribute="trailing" constant="8" id="i9p-Pg-XNE"/>
                     <constraint firstItem="c2N-gY-JGb" firstAttribute="top" secondItem="Xyc-U9-o6J" secondAttribute="bottom" constant="1" id="njC-Qx-cLO"/>
+                    <constraint firstItem="Dqw-iA-ieD" firstAttribute="height" secondItem="uL2-zC-AFQ" secondAttribute="height" id="ukO-zq-Op9"/>
                     <constraint firstItem="Xyc-U9-o6J" firstAttribute="leading" secondItem="TMm-wh-9oG" secondAttribute="trailing" constant="8" id="yMz-aw-jJM"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="controlsHeightConstraint" destination="9Li-1w-Tz5" id="6fI-Yd-BtB"/>
                 <outlet property="nameLabel" destination="Xyc-U9-o6J" id="KoF-VI-Ek8"/>
                 <outlet property="profileImage" destination="TMm-wh-9oG" id="97Q-LR-Pix"/>
                 <outlet property="screenNameLabel" destination="bAf-ua-rRW" id="mCe-GF-gYS"/>
                 <outlet property="timeSinceLabel" destination="vbB-86-r63" id="RRv-ma-k9T"/>
                 <outlet property="tweetTextLabel" destination="c2N-gY-JGb" id="NpH-iJ-qlT"/>
             </connections>
-            <point key="canvasLocation" x="563" y="415"/>
+            <point key="canvasLocation" x="563" y="450"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="favorite" width="16" height="16"/>
+        <image name="reply" width="16" height="16"/>
+        <image name="retweet" width="19" height="16"/>
+    </resources>
 </document>

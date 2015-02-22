@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *tweetTextLabel;
 
 - (void)setTweet:(Tweet *)tweet;
+- (void)setShowControls:(BOOL)showControls;
 
 @end

@@ -9,6 +9,14 @@
 #import "UIImageView+AFNetworking.h"
 #import "TweetCell.h"
 
+@interface TweetCell ()
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *controlsHeightConstraint;
+@property (nonatomic, assign) BOOL showControls;
+
+
+@end
+
 @implementation TweetCell
 
 - (void)awakeFromNib {
@@ -16,6 +24,7 @@
     self.textLabel.preferredMaxLayoutWidth = self.textLabel.frame.size.width;
     self.profileImage.layer.cornerRadius = 3;
     self.profileImage.clipsToBounds = YES;
+    [self setSelectionStyle:UITableViewCellSelectionStyleNone];
 }
 
 - (void)layoutSubviews {
@@ -40,6 +49,15 @@
         self.timeSinceLabel.text = [NSString stringWithFormat:@"%dh", hours];
     } else {
         self.timeSinceLabel.text = [NSString stringWithFormat:@"%dm", minutes];
+    }
+}
+
+- (void)setShowControls:(BOOL)showControls {
+    _showControls = showControls;
+    if (showControls) {
+        self.controlsHeightConstraint.constant = 16;
+    } else {
+        self.controlsHeightConstraint.constant = 0;
     }
 }
 
