@@ -28,6 +28,19 @@
     self.screenNameLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
     self.tweetTextLabel.text = tweet.text;
     [self.profileImage setImageWithURL:[NSURL URLWithString:tweet.user.profileImageUrl]];
+    
+    // Handle the relative time
+    NSTimeInterval interval = -tweet.createdAt.timeIntervalSinceNow;
+    int minutes = interval / 60;
+    int hours = minutes / 60;
+    int days = hours / 24;
+    if (days > 0) {
+        self.timeSinceLabel.text = [NSString stringWithFormat:@"%dd", days];
+    } else if (hours > 0) {
+        self.timeSinceLabel.text = [NSString stringWithFormat:@"%dh", hours];
+    } else {
+        self.timeSinceLabel.text = [NSString stringWithFormat:@"%dm", minutes];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
