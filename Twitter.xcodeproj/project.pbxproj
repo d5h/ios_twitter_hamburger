@@ -14,6 +14,8 @@
 		5D8217FB1A9962E40067E621 /* TweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D8217F91A9962E40067E621 /* TweetCell.xib */; };
 		5D8217FF1A998C540067E621 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8217FD1A998C540067E621 /* ComposeViewController.m */; };
 		5D8218001A998C540067E621 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D8217FE1A998C540067E621 /* ComposeViewController.xib */; };
+		5D8218411AA0196D0067E621 /* HamburgerMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D82183F1AA0196D0067E621 /* HamburgerMenuViewController.m */; };
+		5D8218421AA0196D0067E621 /* HamburgerMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D8218401AA0196D0067E621 /* HamburgerMenuViewController.xib */; };
 		5DC5B70A1A99172B00BCAB73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC5B7091A99172B00BCAB73 /* main.m */; };
 		5DC5B70D1A99172B00BCAB73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC5B70C1A99172B00BCAB73 /* AppDelegate.m */; };
 		5DC5B7151A99172B00BCAB73 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DC5B7141A99172B00BCAB73 /* Images.xcassets */; };
@@ -47,6 +49,9 @@
 		5D8217FC1A998C540067E621 /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		5D8217FD1A998C540067E621 /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		5D8217FE1A998C540067E621 /* ComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
+		5D82183E1AA0196D0067E621 /* HamburgerMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerMenuViewController.h; sourceTree = "<group>"; };
+		5D82183F1AA0196D0067E621 /* HamburgerMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerMenuViewController.m; sourceTree = "<group>"; };
+		5D8218401AA0196D0067E621 /* HamburgerMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HamburgerMenuViewController.xib; sourceTree = "<group>"; };
 		5DC5B7041A99172B00BCAB73 /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DC5B7081A99172B00BCAB73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DC5B7091A99172B00BCAB73 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -182,6 +187,9 @@
 				5D8217FC1A998C540067E621 /* ComposeViewController.h */,
 				5D8217FD1A998C540067E621 /* ComposeViewController.m */,
 				5D8217FE1A998C540067E621 /* ComposeViewController.xib */,
+				5D82183E1AA0196D0067E621 /* HamburgerMenuViewController.h */,
+				5D82183F1AA0196D0067E621 /* HamburgerMenuViewController.m */,
+				5D8218401AA0196D0067E621 /* HamburgerMenuViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -299,6 +307,7 @@
 				5D8217F51A99548A0067E621 /* TweetsViewController.xib in Resources */,
 				5D8218001A998C540067E621 /* ComposeViewController.xib in Resources */,
 				5D8217FB1A9962E40067E621 /* TweetCell.xib in Resources */,
+				5D8218421AA0196D0067E621 /* HamburgerMenuViewController.xib in Resources */,
 				5DC5B7181A99172B00BCAB73 /* LaunchScreen.xib in Resources */,
 				5DC5B7151A99172B00BCAB73 /* Images.xcassets in Resources */,
 				5DC5B7321A9918AE00BCAB73 /* LoginViewController.xib in Resources */,
@@ -357,6 +366,7 @@
 				5DC5B73C1A9935D100BCAB73 /* User.m in Sources */,
 				5D8217FF1A998C540067E621 /* ComposeViewController.m in Sources */,
 				5DC5B7391A9935C600BCAB73 /* Tweet.m in Sources */,
+				5D8218411AA0196D0067E621 /* HamburgerMenuViewController.m in Sources */,
 				5DC5B70A1A99172B00BCAB73 /* main.m in Sources */,
 				5DC5B7311A9918AE00BCAB73 /* LoginViewController.m in Sources */,
 				5D8217F41A99548A0067E621 /* TweetsViewController.m in Sources */,
