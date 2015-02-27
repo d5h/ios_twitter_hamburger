@@ -62,7 +62,18 @@ enum MenuItems {
         CGPoint center = CGPointMake(self.originalCenter.x + translation.x, self.originalCenter.y + translation.y);
         sender.view.center = center;
     } else if (sender.state == UIGestureRecognizerStateEnded) {
-        sender.view.center = self.originalCenter;
+        CGPoint velocity = [sender velocityInView:self.view];
+        CGFloat width = self.view.frame.size.width;
+        CGFloat height = self.view.frame.size.height;
+        CGPoint center;
+        if (velocity.x > 0) {
+            center = CGPointMake(3 * width / 2 - 64, height / 2 + 32);
+        } else {
+            center = self.view.center;
+        }
+        [UIView animateWithDuration:0.2 animations:^{
+            sender.view.center = center;
+        }];
     }
 }
 
@@ -90,6 +101,10 @@ enum MenuItems {
         cell.backgroundColor = twitterBlue();
     }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.slidableViewController.view.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
