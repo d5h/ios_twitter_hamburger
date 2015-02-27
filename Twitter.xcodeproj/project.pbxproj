@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C719B83B708E60D35650B52 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB891F21730450DB74F087CB /* libPods.a */; };
+		5D409AF81AA032D9006FB545 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D409AF71AA032D9006FB545 /* Constants.m */; };
 		5D8217F41A99548A0067E621 /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8217F21A99548A0067E621 /* TweetsViewController.m */; };
 		5D8217F51A99548A0067E621 /* TweetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D8217F31A99548A0067E621 /* TweetsViewController.xib */; };
 		5D8217FA1A9962E40067E621 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8217F81A9962E40067E621 /* TweetCell.m */; };
@@ -40,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		540E2DBD396C7F894F751A99 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		5D409AF61AA03209006FB545 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		5D409AF71AA032D9006FB545 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		5D8217F11A99548A0067E621 /* TweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetsViewController.h; sourceTree = "<group>"; };
 		5D8217F21A99548A0067E621 /* TweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
 		5D8217F31A99548A0067E621 /* TweetsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetsViewController.xib; sourceTree = "<group>"; };
@@ -142,6 +145,8 @@
 				5DC5B72D1A99188D00BCAB73 /* View Controllers */,
 				5DC5B70B1A99172B00BCAB73 /* AppDelegate.h */,
 				5DC5B70C1A99172B00BCAB73 /* AppDelegate.m */,
+				5D409AF61AA03209006FB545 /* Constants.h */,
+				5D409AF71AA032D9006FB545 /* Constants.m */,
 				5DC5B7141A99172B00BCAB73 /* Images.xcassets */,
 				5DC5B7161A99172B00BCAB73 /* LaunchScreen.xib */,
 				5DC5B7071A99172B00BCAB73 /* Supporting Files */,
@@ -361,6 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D409AF81AA032D9006FB545 /* Constants.m in Sources */,
 				5DC5B7351A991A4E00BCAB73 /* TwitterClient.m in Sources */,
 				5DC5B70D1A99172B00BCAB73 /* AppDelegate.m in Sources */,
 				5DC5B73C1A9935D100BCAB73 /* User.m in Sources */,

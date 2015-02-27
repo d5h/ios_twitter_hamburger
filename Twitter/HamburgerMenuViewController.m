@@ -7,11 +7,25 @@
 //
 
 #import "HamburgerMenuViewController.h"
+#import "Constants.h"
 
-@interface HamburgerMenuViewController ()
+enum MenuItems {
+    Profile,
+    Timeline,
+    Mentions
+};
 
+// NOTE: It would have been more generic to make the HamburgerViewController simply
+// manage other views.  One would be the menu, and the other the currently selected
+// view.  By also making the hamburger view manage the menu, it's hard to add a
+// navigation bar to it.
+@interface HamburgerMenuViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIViewController *slidableViewController;
 @property (nonatomic, assign) CGPoint originalCenter;
+@property (nonatomic, readonly) NSArray *menuItems;
+
 
 @end
 
@@ -32,6 +46,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
     self.slidableViewController.view.frame = self.view.frame;
     [self.view addSubview:self.slidableViewController.view];
 }
@@ -47,6 +64,32 @@
     } else if (sender.state == UIGestureRecognizerStateEnded) {
         sender.view.center = self.originalCenter;
     }
+}
+
+- (NSArray *)menuItems {
+    return @[@{@"text": @""},  // row for spacing
+             @{@"id": @(Profile), @"text": @"Profile"},
+             @{@"id": @(Timeline), @"text": @"Timeline"},
+             @{@"id": @(Mentions), @"text": @"Mentions"}];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.menuItems.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Don't need reusable cells, no scrolling
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HamburgerMenuCell"];
+    cell.textLabel.text = self.menuItems[indexPath.row][@"text"];
+    // Hack!  See comment above on why this should be a navigation bar.
+    if (indexPath.row == 0) {
+        cell.backgroundColor = twitterBlue();
+    }
+    return cell;
 }
 
 - (void)didReceiveMemoryWarning {

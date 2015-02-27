@@ -11,6 +11,7 @@
 #import "TwitterClient.h"
 #import "TweetsViewController.h"
 #import "HamburgerMenuViewController.h"
+#import "Constants.h"
 
 @interface AppDelegate ()
 
@@ -22,13 +23,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self customizeAppearance];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:UserDidLogoutNotification object:nil];
     
     User *user = [User currentUser];
     if (user != nil) {
         UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] init]];
-        self.window.rootViewController = [[HamburgerMenuViewController alloc] initWithViewController:nc];
+        HamburgerMenuViewController *hvc = [[HamburgerMenuViewController alloc] initWithViewController:nc];
+        self.window.rootViewController = hvc;
     } else {
         self.window.rootViewController = [[LoginViewController alloc] init];
     }
@@ -46,6 +49,12 @@
     [[TwitterClient sharedInstance] openURL:url];
 
     return YES;
+}
+
+- (void)customizeAppearance {
+    [[UINavigationBar appearance] setBarTintColor:twitterBlue()];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
