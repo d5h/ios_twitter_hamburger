@@ -13,7 +13,7 @@ enum MenuItem {
     None,
     Profile,
     Timeline,
-    Mentions
+    Messages
 };
 
 // NOTE: It would have been more generic to make the HamburgerViewController simply
@@ -26,6 +26,7 @@ enum MenuItem {
 @property (weak, nonatomic) UIViewController *slidableViewController;
 @property (strong, nonatomic) UIViewController *timelineViewController;
 @property (strong, nonatomic) UIViewController *profileViewController;
+@property (strong, nonatomic) UIViewController *messagesViewController;
 @property (nonatomic, assign) CGPoint originalCenter;
 @property (nonatomic, readonly) NSArray *menuItems;
 @property (nonatomic, assign) enum MenuItem currentSlidableItem;
@@ -34,7 +35,7 @@ enum MenuItem {
 
 @implementation HamburgerMenuViewController
 
-- (id)initWithTimelineViewController:(UIViewController *)timelineViewController profileViewController:(UIViewController *)profileViewController {
+- (id)initWithTimelineViewController:(UIViewController *)timelineViewController profileViewController:(UIViewController *)profileViewController messagesViewController:(UIViewController *)messagesViewController {
     self = [super init];
     
     if (self) {
@@ -46,6 +47,10 @@ enum MenuItem {
         self.profileViewController = profileViewController;
         [self addPanGestureToViewController:profileViewController];
         self.profileViewController.view.hidden = YES;
+        
+        self.messagesViewController = messagesViewController;
+        [self addPanGestureToViewController:messagesViewController];
+        self.messagesViewController.view.hidden = YES;
     }
 
     return self;
@@ -67,6 +72,9 @@ enum MenuItem {
     
     self.profileViewController.view.frame = self.view.frame;
     [self.view addSubview:self.profileViewController.view];
+    
+    self.messagesViewController.view.frame = self.view.frame;
+    [self.view addSubview:self.messagesViewController.view];
 }
 
 - (void)onPan:(UIPanGestureRecognizer *)sender {
@@ -97,7 +105,7 @@ enum MenuItem {
     return @[@{@"id": @(None), @"text": @""},  // row for spacing
              @{@"id": @(Profile), @"text": @"Profile", @"viewController": self.profileViewController},
              @{@"id": @(Timeline), @"text": @"Timeline", @"viewController": self.timelineViewController},
-             @{@"id": @(Mentions), @"text": @"Mentions", @"viewController": self.timelineViewController}];
+             @{@"id": @(Messages), @"text": @"Mentions", @"viewController": self.messagesViewController}];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

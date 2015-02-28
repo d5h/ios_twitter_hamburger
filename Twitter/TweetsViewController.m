@@ -27,7 +27,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.navigationItem.title = @"Home";
+    if (self.messagesMode) {
+        self.navigationItem.title = @"Messages";
+    } else {
+        self.navigationItem.title = @"Home";
+    }
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Log Out" style:UIBarButtonItemStylePlain target:self action:@selector(onLogout)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Compose" style:UIBarButtonItemStylePlain target:self action:@selector(onCompose)];
     
@@ -42,20 +46,37 @@
     // This is a hack
     [self.tableView addSubview:self.refreshControl];
     
-    [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
-        self.selectedRow = -1;
-        self.tweets = tweets;
-        [self.tableView reloadData];
-    }];
+    // This would be much cleaner with a delegate
+    if (self.messagesMode) {
+        [[TwitterClient sharedInstance] directMessagesWithParams:nil completion:^(NSArray *tweets, NSError *error) {
+            [self reloadTweets:tweets endRefreshing:NO];
+        }];
+    } else {
+        [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
+            [self reloadTweets:tweets endRefreshing:NO];
+        }];
+    }
 }
 
 - (void)onRefresh {
-    [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
-        self.selectedRow = -1;
-        self.tweets = tweets;
+    if (self.messagesMode) {
+        [[TwitterClient sharedInstance] directMessagesWithParams:nil completion:^(NSArray *tweets, NSError *error) {
+            [self reloadTweets:tweets endRefreshing:YES];
+        }];
+    } else {
+        [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
+            [self reloadTweets:tweets endRefreshing:YES];
+        }];
+    }
+}
+
+- (void)reloadTweets:(NSArray *)tweets endRefreshing:(BOOL)endRefreshing {
+    self.selectedRow = -1;
+    self.tweets = tweets;
+    if (endRefreshing) {
         [self.refreshControl endRefreshing];
-        [self.tableView reloadData];
-    }];
+    }
+    [self.tableView reloadData];
 }
 
 - (void)onLogout {

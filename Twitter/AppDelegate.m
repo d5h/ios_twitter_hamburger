@@ -32,7 +32,10 @@
     if (user != nil) {
         UINavigationController *timeline = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] init]];
         UINavigationController *profile = [[UINavigationController alloc] initWithRootViewController:[[ProfileViewController alloc] initWithUser:user]];
-        HamburgerMenuViewController *hvc = [[HamburgerMenuViewController alloc] initWithTimelineViewController:timeline profileViewController:profile];
+        TweetsViewController *messagesView = [[TweetsViewController alloc] init];
+        messagesView.messagesMode = YES;
+        UINavigationController *messages = [[UINavigationController alloc] initWithRootViewController:messagesView];
+        HamburgerMenuViewController *hvc = [[HamburgerMenuViewController alloc] initWithTimelineViewController:timeline profileViewController:profile messagesViewController:messages];
         self.window.rootViewController = hvc;
     } else {
         self.window.rootViewController = [[LoginViewController alloc] init];

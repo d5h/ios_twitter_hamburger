@@ -10,4 +10,6 @@
 
 @interface TweetsViewController : UIViewController
 
+@property (nonatomic, assign) BOOL messagesMode;
+
 @end
