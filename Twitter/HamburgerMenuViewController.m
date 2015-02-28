@@ -9,7 +9,8 @@
 #import "HamburgerMenuViewController.h"
 #import "Constants.h"
 
-enum MenuItems {
+enum MenuItem {
+    None,
     Profile,
     Timeline,
     Mentions
@@ -25,7 +26,7 @@ enum MenuItems {
 @property (strong, nonatomic) UIViewController *slidableViewController;
 @property (nonatomic, assign) CGPoint originalCenter;
 @property (nonatomic, readonly) NSArray *menuItems;
-
+@property (nonatomic, assign) enum MenuItem currentSlidableItem;
 
 @end
 
@@ -36,6 +37,7 @@ enum MenuItems {
     
     if (self) {
         self.slidableViewController = viewController;
+        self.currentSlidableItem = Timeline;
         UIPanGestureRecognizer *gestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPan:)];
         [self.slidableViewController.view addGestureRecognizer:gestureRecognizer];
     }
@@ -78,7 +80,7 @@ enum MenuItems {
 }
 
 - (NSArray *)menuItems {
-    return @[@{@"text": @""},  // row for spacing
+    return @[@{@"id": @(None), @"text": @""},  // row for spacing
              @{@"id": @(Profile), @"text": @"Profile"},
              @{@"id": @(Timeline), @"text": @"Timeline"},
              @{@"id": @(Mentions), @"text": @"Mentions"}];
@@ -95,6 +97,7 @@ enum MenuItems {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Don't need reusable cells, no scrolling
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HamburgerMenuCell"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = self.menuItems[indexPath.row][@"text"];
     // Hack!  See comment above on why this should be a navigation bar.
     if (indexPath.row == 0) {
@@ -104,7 +107,17 @@ enum MenuItems {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.slidableViewController.view.hidden = YES;
+    enum MenuItem menuItem = [self.menuItems[indexPath.row][@"id"] shortValue];
+    if (menuItem == None) {
+        return;
+    }
+    if (menuItem != self.currentSlidableItem) {
+        self.slidableViewController.view.hidden = YES;
+        // Switch to new view
+    }
+    [UIView animateWithDuration:0.2 animations:^{
+        self.slidableViewController.view.center = self.view.center;
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
