@@ -23,7 +23,9 @@ enum MenuItem {
 @interface HamburgerMenuViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) UIViewController *slidableViewController;
+@property (weak, nonatomic) UIViewController *slidableViewController;
+@property (strong, nonatomic) UIViewController *timelineViewController;
+@property (strong, nonatomic) UIViewController *profileViewController;
 @property (nonatomic, assign) CGPoint originalCenter;
 @property (nonatomic, readonly) NSArray *menuItems;
 @property (nonatomic, assign) enum MenuItem currentSlidableItem;
@@ -32,17 +34,26 @@ enum MenuItem {
 
 @implementation HamburgerMenuViewController
 
-- (id)initWithViewController:(UIViewController *)viewController {
+- (id)initWithTimelineViewController:(UIViewController *)timelineViewController profileViewController:(UIViewController *)profileViewController {
     self = [super init];
     
     if (self) {
-        self.slidableViewController = viewController;
+        self.timelineViewController = timelineViewController;
+        [self addPanGestureToViewController:timelineViewController];
+        self.slidableViewController = timelineViewController;
         self.currentSlidableItem = Timeline;
-        UIPanGestureRecognizer *gestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPan:)];
-        [self.slidableViewController.view addGestureRecognizer:gestureRecognizer];
+        
+        self.profileViewController = profileViewController;
+        [self addPanGestureToViewController:profileViewController];
+        self.profileViewController.view.hidden = YES;
     }
 
     return self;
+}
+
+- (void)addPanGestureToViewController:(UIViewController *)viewController {
+    UIPanGestureRecognizer *gestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPan:)];
+    [viewController.view addGestureRecognizer:gestureRecognizer];
 }
 
 - (void)viewDidLoad {
@@ -51,8 +62,11 @@ enum MenuItem {
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    self.slidableViewController.view.frame = self.view.frame;
-    [self.view addSubview:self.slidableViewController.view];
+    self.timelineViewController.view.frame = self.view.frame;
+    [self.view addSubview:self.timelineViewController.view];
+    
+    self.profileViewController.view.frame = self.view.frame;
+    [self.view addSubview:self.profileViewController.view];
 }
 
 - (void)onPan:(UIPanGestureRecognizer *)sender {
@@ -81,9 +95,9 @@ enum MenuItem {
 
 - (NSArray *)menuItems {
     return @[@{@"id": @(None), @"text": @""},  // row for spacing
-             @{@"id": @(Profile), @"text": @"Profile"},
-             @{@"id": @(Timeline), @"text": @"Timeline"},
-             @{@"id": @(Mentions), @"text": @"Mentions"}];
+             @{@"id": @(Profile), @"text": @"Profile", @"viewController": self.profileViewController},
+             @{@"id": @(Timeline), @"text": @"Timeline", @"viewController": self.timelineViewController},
+             @{@"id": @(Mentions), @"text": @"Mentions", @"viewController": self.timelineViewController}];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -107,13 +121,21 @@ enum MenuItem {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    enum MenuItem menuItem = [self.menuItems[indexPath.row][@"id"] shortValue];
+    NSDictionary *menuDictionary = self.menuItems[indexPath.row];
+    enum MenuItem menuItem = [menuDictionary[@"id"] shortValue];
     if (menuItem == None) {
         return;
     }
     if (menuItem != self.currentSlidableItem) {
+        CGRect frame = self.slidableViewController.view.frame;
+        CGPoint center = self.slidableViewController.view.center;
         self.slidableViewController.view.hidden = YES;
-        // Switch to new view
+
+        self.currentSlidableItem = menuItem;
+        self.slidableViewController = menuDictionary[@"viewController"];
+        self.slidableViewController.view.frame = frame;
+        self.slidableViewController.view.center = center;
+        self.slidableViewController.view.hidden = NO;
     }
     [UIView animateWithDuration:0.2 animations:^{
         self.slidableViewController.view.center = self.view.center;

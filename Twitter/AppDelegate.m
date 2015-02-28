@@ -12,6 +12,7 @@
 #import "TweetsViewController.h"
 #import "HamburgerMenuViewController.h"
 #import "Constants.h"
+#import "ProfileViewController.h"
 
 @interface AppDelegate ()
 
@@ -29,8 +30,9 @@
     
     User *user = [User currentUser];
     if (user != nil) {
-        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] init]];
-        HamburgerMenuViewController *hvc = [[HamburgerMenuViewController alloc] initWithViewController:nc];
+        UINavigationController *timeline = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] init]];
+        UINavigationController *profile = [[UINavigationController alloc] initWithRootViewController:[[ProfileViewController alloc] initWithUser:user]];
+        HamburgerMenuViewController *hvc = [[HamburgerMenuViewController alloc] initWithTimelineViewController:timeline profileViewController:profile];
         self.window.rootViewController = hvc;
     } else {
         self.window.rootViewController = [[LoginViewController alloc] init];

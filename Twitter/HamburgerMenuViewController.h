@@ -10,6 +10,6 @@
 
 @interface HamburgerMenuViewController : UIViewController
 
-- (id)initWithViewController:(UIViewController *)viewController;
+- (id)initWithTimelineViewController:(UIViewController *)timelineViewController profileViewController:(UIViewController *)profileViewController;
 
 @end
