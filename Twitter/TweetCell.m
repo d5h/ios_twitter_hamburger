@@ -32,6 +32,7 @@
     [self addTapRecognizerForImage:self.replyImage action:@selector(onReply)];
     [self addTapRecognizerForImage:self.retweetImage action:@selector(onRetweet)];
     [self addTapRecognizerForImage:self.favoriteImage action:@selector(onFavorite)];
+    [self addTapRecognizerForImage:self.profileImage action:@selector(onUserTap)];
 }
 
 - (void)onReply {
@@ -44,6 +45,10 @@
 
 - (void)onFavorite {
     [self.delegate tweetCellFavoriteTapped:self];
+}
+
+- (void)onUserTap {
+    [self.delegate tweetCellUserTapped:self];
 }
 
 - (void)addTapRecognizerForImage:(UIImageView *)image action:(SEL)action {

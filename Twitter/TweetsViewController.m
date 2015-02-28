@@ -12,6 +12,7 @@
 #import "TweetCell.h"
 #import "Tweet.h"
 #import "ComposeViewController.h"
+#import "ProfileViewController.h"
 
 @interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, TweetCellDelegate>
 
@@ -140,6 +141,11 @@
     [[TwitterClient sharedInstance] favorite:cell.tweet completion:^(NSError *error) {
         NSLog(@"Favorite!");
     }];
+}
+
+- (void)tweetCellUserTapped:(TweetCell *)cell {
+    ProfileViewController *pvc = [[ProfileViewController alloc] initWithUser:cell.tweet.user];
+    [self.navigationController pushViewController:pvc animated:YES];
 }
 
 /*
